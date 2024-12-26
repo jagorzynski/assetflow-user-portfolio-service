@@ -42,4 +42,12 @@ public class User {
     this.birthday = birthday;
     this.portfolios = newArrayList();
   }
+
+  public void addPortfolio(Portfolio portfolio) {
+    portfolios.add(portfolio);
+  }
+
+  public void removePortfolio(Long portfolioId) {
+    portfolios.removeIf(portfolio -> portfolio.getPortfolioId().equals(portfolioId));
+  }
 }
