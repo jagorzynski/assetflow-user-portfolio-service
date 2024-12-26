@@ -49,6 +49,11 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Tag Docker Image as Latest
+        if: success()
+        run: |
+          docker tag ghcr.io/${{ github.repository_owner }}/assetflow-user-portfolio-service:${{ github.sha }} ghcr.io/${{ github.repository_owner }}/assetflow-user-portfolio-service:latest
+
       - name: Scan Docker Image with Grype
         if: success()
         uses: anchore/scan-action@v3
@@ -66,4 +71,6 @@ jobs:
 
       - name: Push to GitHub Container Registry
         if: success()
-        run: docker push ghcr.io/${{ github.repository_owner }}/assetflow-user-portfolio-service:${{ github.sha }}
+        run: |
+          docker push ghcr.io/${{ github.repository_owner }}/assetflow-user-portfolio-service:${{ github.sha }}
+          docker push ghcr.io/${{ github.repository_owner }}/assetflow-user-portfolio-service:latest
