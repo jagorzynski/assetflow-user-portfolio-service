@@ -1,12 +1,11 @@
 package com.sothrose.assetflow_user_portfolio_service.model;
 
 import jakarta.persistence.*;
+import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.math.BigDecimal;
 
 @Entity
 @Table(name = "portfolios")
@@ -37,4 +36,19 @@ public class Portfolio {
 
   @Column(nullable = false)
   private BigDecimal purchasePrice;
+
+  public Portfolio(
+      User user,
+      AssetType assetType,
+      String assetName,
+      String currency,
+      BigDecimal quantity,
+      BigDecimal purchasePrice) {
+    this.user = user;
+    this.assetType = assetType;
+    this.assetName = assetName;
+    this.currency = currency;
+    this.quantity = quantity;
+    this.purchasePrice = purchasePrice;
+  }
 }
