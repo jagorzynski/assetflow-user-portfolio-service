@@ -18,7 +18,7 @@ public class PortfolioService {
 
   public void addNewPortfolioToUser(PortfolioDto portfolioDto) {
     var user = fetchUserById(portfolioDto.getUserId());
-    user.addPortfolio(portfolioDto.toPortfolio(user));
+    user.addPortfolio(portfolioDto.toPortfolio());
     userRepository.save(user);
   }
 
@@ -29,7 +29,9 @@ public class PortfolioService {
   }
 
   public List<PortfolioDto> fetchAllUserPortfolios(Long userId) {
-    return fetchUserById(userId).getPortfolios().stream().map(PortfolioDto::from).toList();
+    return fetchUserById(userId).getPortfolios().stream()
+        .map(portfolio -> PortfolioDto.from(portfolio, userId))
+        .toList();
   }
 
   private User fetchUserById(Long userId) {

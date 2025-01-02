@@ -30,7 +30,7 @@ public class User {
   private LocalDate birthday;
 
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-  @JoinColumn(name = "user_id")
+  @JoinColumn(name = "user_id", nullable = false)
   private List<Portfolio> portfolios;
 
   public User(

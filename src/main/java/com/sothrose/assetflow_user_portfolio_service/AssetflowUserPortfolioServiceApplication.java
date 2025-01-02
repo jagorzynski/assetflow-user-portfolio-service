@@ -41,11 +41,8 @@ public class AssetflowUserPortfolioServiceApplication {
               .birthday(LocalDate.of(1985, 11, 25))
               .build();
 
-      userRepository.saveAll(asList(user1, user2));
-
       var portfolio1 =
           Portfolio.builder()
-              .user(user1)
               .assetType(CRYPTO)
               .assetName("BTC")
               .currency("USDT")
@@ -55,7 +52,6 @@ public class AssetflowUserPortfolioServiceApplication {
 
       var portfolio2 =
           Portfolio.builder()
-              .user(user1)
               .assetType(CRYPTO)
               .assetName("ETH")
               .currency("USDT")
@@ -65,7 +61,6 @@ public class AssetflowUserPortfolioServiceApplication {
 
       var portfolio3 =
           Portfolio.builder()
-              .user(user2)
               .assetType(CRYPTO)
               .assetName("LTC")
               .currency("USDT")
@@ -75,6 +70,8 @@ public class AssetflowUserPortfolioServiceApplication {
 
       user1.setPortfolios(asList(portfolio1, portfolio2));
       user2.setPortfolios(asList(portfolio3));
+
+      userRepository.saveAll(asList(user1, user2));
     };
   }
 }

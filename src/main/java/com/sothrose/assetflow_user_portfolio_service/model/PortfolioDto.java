@@ -16,9 +16,9 @@ public class PortfolioDto {
   private BigDecimal quantity;
   private BigDecimal purchasePrice;
 
-  public static PortfolioDto from(Portfolio portfolio) {
+  public static PortfolioDto from(Portfolio portfolio, Long userId) {
     return new PortfolioDto(
-        portfolio.getUser().getUserId(),
+        userId,
         portfolio.getAssetType(),
         portfolio.getAssetName(),
         portfolio.getCurrency(),
@@ -26,7 +26,7 @@ public class PortfolioDto {
         portfolio.getPurchasePrice());
   }
 
-  public Portfolio toPortfolio(User user) {
-    return new Portfolio(user, assetType, assetName, currency, quantity, purchasePrice);
+  public Portfolio toPortfolio() {
+    return new Portfolio(assetType, assetName, currency, quantity, purchasePrice);
   }
 }
