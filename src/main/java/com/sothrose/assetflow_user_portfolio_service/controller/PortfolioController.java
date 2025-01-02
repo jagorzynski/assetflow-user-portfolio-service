@@ -20,7 +20,7 @@ public class PortfolioController {
     portfolioService.addNewPortfolioToUser(portfolioDto);
   }
 
-  @GetMapping(path = "/userId", produces = APPLICATION_JSON_VALUE)
+  @GetMapping(path = "/{userId}", produces = APPLICATION_JSON_VALUE)
   public List<PortfolioDto> getAllUserPortfolios(@PathVariable Long userId) {
     return portfolioService.fetchAllUserPortfolios(userId);
   }

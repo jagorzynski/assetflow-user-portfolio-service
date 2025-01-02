@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    config:
+      enabled: false
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/assetflow-user-portfolio-db
+    username: sothrose
+    password: sothrose
+    driver-class-name: org.postgresql.Driver
+
+logging:
+  level:
+    root: DEBUG

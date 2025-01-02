@@ -19,8 +19,6 @@ public class Portfolio {
   @SequenceGenerator(name = "portfolio_seq", sequenceName = "portfolio_seq", allocationSize = 1)
   private Long portfolioId;
 
-  @ManyToOne private User user;
-
   @Enumerated(EnumType.STRING)
   @Column(nullable = false)
   private AssetType assetType;
@@ -38,13 +36,11 @@ public class Portfolio {
   private BigDecimal purchasePrice;
 
   public Portfolio(
-      User user,
       AssetType assetType,
       String assetName,
       String currency,
       BigDecimal quantity,
       BigDecimal purchasePrice) {
-    this.user = user;
     this.assetType = assetType;
     this.assetName = assetName;
     this.currency = currency;
